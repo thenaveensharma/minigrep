@@ -8,7 +8,6 @@ use std::process;
 use std::vec;
 use std::vec::Vec;
 
-
 fn main() {
     // let args: Vec<String> = env::args().collect();
 
@@ -22,11 +21,14 @@ fn main() {
     //     process::exit(1);
     // }
     // make_vector()
-    let vect = Vec::from([155, 1513, 62, 11, 18, 18, 18]);
-    let median_of_vector = find_median(vect.clone());
-    print!("Median of vector is {}", median_of_vector);
-    let median_of_vector = find_mode(vect.clone());
-    print!("Mode of vector is {}", median_of_vector);
+    // let vect = Vec::from([155, 1513, 62, 11, 18, 18, 18]);
+    // let median_of_vector = find_median(vect.clone());
+    // print!("Median of vector is {}", median_of_vector);
+    // let median_of_vector = find_mode(vect.clone());
+    // print!("Mode of vector is {}", median_of_vector);
+    let string = String::from("apple naveen sharma");
+    let res = convert_to_pig_latin(string);
+    print!("{res}");
 }
 
 //made and array from 1 to 100
@@ -91,4 +93,33 @@ fn find_mode(vector: Vec<i32>) -> i32 {
     }
 
     max_key
+}
+/*
+Convert strings to pig latin. The first consonant of each word is moved to the end of the word and ay is added,
+so first becomes irst-fay. Words that start with a vowel have hay added to the end instead (apple becomes apple-hay).
+Keep in mind the details about UTF-8 encoding! */
+
+const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
+
+fn convert_to_pig_latin(s: String) -> String {
+    let mut result = String::new();
+
+    for word in s.split_whitespace() {
+        let mut chars = word.chars();
+        if let Some(first_char) = chars.next() {
+            if VOWELS.contains(&first_char) {
+                // Words that start with a vowel
+                result.push_str(&format!("{}-hay", word));
+            } else {
+                // Words that start with a consonant
+                let mut rest_of_word = word.to_owned();
+                let first_consonant = rest_of_word.remove(0); // Remove the first character
+                result.push_str(&format!("{}-{}ay", rest_of_word, first_consonant));
+            }
+        }
+        result.push(' '); // Add a space after each word
+    }
+
+    // Trim the trailing space and return the result
+    result.trim_end().to_string()
 }

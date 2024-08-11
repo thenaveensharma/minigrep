@@ -1,20 +1,45 @@
-struct Coordinates<T> {
-    x: T,
-    _y: T,
+fn main() {
+    let tweet = Tweet {
+        username: String::from("the_naveen_sharma"),
+        content: String::from("Follow me to learn rust"),
+        reply: false,
+        retweet: false,
+    };
+
+    print!("1 new tweet {}", tweet.summarise());
 }
 
-impl Coordinates<i32> {
-    fn distance_from_origin(&self) -> i32 {
-        self.x.pow(2) + self._y.pow(2)
+pub trait Summary {
+    fn summarise(&self) -> String;
+}
+pub struct NewsArtical {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArtical {
+    fn summarise(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
     }
 }
-fn main() {
-    let point1 = Coordinates { x: 1, _y: 2 };
-    println!(
-        "Point1 x is {} and distance from origin is {}",
-        point1.x,
-        point1.distance_from_origin()
-    );
-    let integer = Some(1);
-    let integer = Some(1.0);
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+impl Summary for Tweet {
+    fn summarise(&self) -> String {
+        format!("{}: {}", self.username, self.content)
+    }
+}
+
+type Meters = u32;
+impl Summary for Meters {
+    fn summarise(&self) -> String {
+        format!("{}", self)
+    }
 }

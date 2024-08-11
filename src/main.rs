@@ -19,6 +19,7 @@ fn main() {
     };
 
     println!("New article available! {}", article.summarize());
+    notify(&article);
 }
 
 pub trait Summary {

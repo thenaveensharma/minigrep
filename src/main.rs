@@ -6,22 +6,41 @@ fn main() {
         retweet: false,
     };
 
-    print!("1 new tweet {}", tweet.summarise());
+    print!("1 new tweet {}", tweet.summarize());
+
+    let article = NewsArticle {
+        headline: String::from("Penguins win the Stanley Cup Championship!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Iceburgh"),
+        content: String::from(
+            "The Pittsburgh Penguins once again are the best \
+             hockey team in the NHL.",
+        ),
+    };
+
+    println!("New article available! {}", article.summarize());
 }
 
 pub trait Summary {
-    fn summarise(&self) -> String;
+    fn summarize_autor(&self) -> String;
+    fn summarize(&self) -> String {
+        format!("(Read more from {}...)", self.summarize_autor())
+    }
 }
-pub struct NewsArtical {
+pub struct NewsArticle {
     pub headline: String,
     pub location: String,
     pub author: String,
     pub content: String,
 }
 
-impl Summary for NewsArtical {
-    fn summarise(&self) -> String {
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
         format!("{}, by {} ({})", self.headline, self.author, self.location)
+    }
+
+    fn summarize_autor(&self) -> String {
+        todo!()
     }
 }
 
@@ -32,14 +51,22 @@ pub struct Tweet {
     pub retweet: bool,
 }
 impl Summary for Tweet {
-    fn summarise(&self) -> String {
+    fn summarize(&self) -> String {
         format!("{}: {}", self.username, self.content)
+    }
+
+    fn summarize_autor(&self) -> String {
+        todo!()
     }
 }
 
 type Meters = u32;
 impl Summary for Meters {
-    fn summarise(&self) -> String {
+    fn summarize(&self) -> String {
         format!("{}", self)
+    }
+
+    fn summarize_autor(&self) -> String {
+        todo!()
     }
 }

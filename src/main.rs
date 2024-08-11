@@ -72,6 +72,6 @@ impl Summary for Meters {
     }
 }
 
-pub fn notify(item: &impl Summary) {
+pub fn notify<T:Summary>(item: &T) {
     println!("Breaking news! {}", item.summarize());
 }

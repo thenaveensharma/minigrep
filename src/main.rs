@@ -100,7 +100,7 @@
 //     }
 // }
 
-// fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
+// fn longest<'a,'b>(str1: &'a str, str2: &'b str) -> & str {
 //     if str1.len() > str2.len() {
 //         str1
 //     } else {
@@ -110,14 +110,34 @@
 
 // Lifetime annotations in struct definations
 
-struct ImportantExcerpt<'a> {
-    part: &'a str,
-}
+// struct ImportantExcerpt<'a> {
+//     part: &'a str,
+// }
+// fn main() {
+//     let novel = String::from("Call me Naveen. Some years ago...");
+//     let first_sentence = novel.split('.').next().unwrap();
+//     print!("{first_sentence}");
+//     let i = ImportantExcerpt {
+//         part: first_sentence,
+//     };
+// }
+
 fn main() {
-    let novel = String::from("Call me Naveen. Some years ago...");
-    let first_sentence = novel.split('.').next().unwrap();
-    print!("{first_sentence}");
-    let i = ImportantExcerpt {
-        part: first_sentence,
-    };
+    // first_word("The Naveen Sharma");
+    let string1 = String::from("long string");
+    {
+        let string2 = "xyz";
+        let result = longest(string1.as_str(), string2);
+        print!("The longest string is {result}");
+    }
 }
+
+// fn first_word<'a>(s: &'a str) -> &'a str {
+//     let bytes = s.as_bytes();
+//     for (i, &val) in bytes.iter().enumerate() {
+//         if val == b' ' {
+//             return &s[0..i];
+//         }
+//     }
+//     &s[..]
+// }

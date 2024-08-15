@@ -110,26 +110,26 @@
 
 // Lifetime annotations in struct definations
 
-struct ImportantExcerpt<'a> {
-    part: &'a str,
-}
-impl<'a> ImportantExcerpt<'a> {
-    fn level(&self)->i32{
-        3
-    }
-    fn announance_and_return_part(&self,announcement:&str)->&str{
-        print!("Attention please: {announcement}");
-        self.part
-    }
-}
-fn main() {
-    let novel = String::from("Call me Naveen. Some years ago...");
-    let first_sentence = novel.split('.').next().unwrap();
-    print!("{first_sentence}");
-    let i = ImportantExcerpt {
-        part: first_sentence,
-    };
-}
+// struct ImportantExcerpt<'a> {
+//     part: &'a str,
+// }
+// impl<'a> ImportantExcerpt<'a> {
+//     fn level(&self)->i32{
+//         3
+//     }
+//     fn announance_and_return_part(&self,announcement:&str)->&str{
+//         print!("Attention please: {announcement}");
+//         self.part
+//     }
+// }
+// fn main() {
+//     let novel = String::from("Call me Naveen. Some years ago...");
+//     let first_sentence = novel.split('.').next().unwrap();
+//     print!("{first_sentence}");
+//     let i = ImportantExcerpt {
+//         part: first_sentence,
+//     };
+// }
 
 // fn main() {
     // first_word("The Naveen Sharma");
@@ -144,3 +144,8 @@ fn main() {
 //     }
 //     &s[..]
 // }
+
+// The Static Lifetime
+fn main(){
+let _s:&'static str="I have a static lifetime.";
+}

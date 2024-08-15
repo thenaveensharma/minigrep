@@ -92,10 +92,12 @@
 
 //generic lifetimes in functions
 fn main() {
-    let string1 = String::from("abcd");
-    let string2 = "xyz";
-    let result = longest(string1.as_str(), string2);
-    print!("The longest string is {result}");
+    let string1 = String::from("long string");
+    {
+        let string2 = "xyz";
+        let result = longest(string1.as_str(), string2);
+        print!("The longest string is {result}");
+    }
 }
 
 fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {

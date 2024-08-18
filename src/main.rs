@@ -145,26 +145,30 @@
 //     &s[..]
 // }
 
-use std::fmt::Display;
+// use std::fmt::Display;
 
 // Generic Type Parameters, Trait Bounds, and Lifetimes Together
-fn main() {
-    let string1 = String::from("long string");
-    {
-        let string2 = "xyz";
-        let result = longest_with_an_announcement(string1.as_str(), string2, "The Naveen");
-        print!("The longest string is {result}");
-    }
-}
+// fn main() {
+//     let string1 = String::from("long string");
+//     {
+//         let string2 = "xyz";
+//         let result = longest_with_an_announcement(string1.as_str(), string2, "The Naveen");
+//         print!("The longest string is {result}");
+//     }
+// }
 
-fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
-where
-    T: Display,
-{
-    println!("Announcemen! {ann}");
-    if x.len() > y.len() {
-        x
-    } else {
-        y
-    }
+// fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+// where
+//     T: Display,
+// {
+//     println!("Announcemen! {ann}");
+//     if x.len() > y.len() {
+//         x
+//     } else {
+//         y
+//     }
+// }
+
+fn main(){
+    
 }

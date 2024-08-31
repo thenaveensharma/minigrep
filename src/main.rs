@@ -11,6 +11,8 @@
 //         process::exit(1);
 //     });
 
+use std::thread;
+
 //     if let Err(e) = minigrep::run(config) {
 //         eprintln!("Application error: {e}");
 //         process::exit(1);
@@ -63,9 +65,40 @@ fn main() {
         user_pref2, giveaway2
     );
 
-    let list = vec![1, 2, 3];
+    let mut list = vec![1, 2, 3];
     print!("Before defining closure: {list:?}");
-    let only_borrows = || println!("From closure : {list:?}");
+    let mut only_borrows = || list.push(4);
     only_borrows();
     print!("After defining closure: {list:?}");
+
+    thread::spawn(move || print!("From thread: {list:?}"))
+        .join()
+        .unwrap();
+
+    let mut num_sort_operations = 0;
+    let mut list = [
+        Rectangle {
+            width: 10,
+            height: 1,
+        },
+        Rectangle {
+            width: 3,
+            height: 5,
+        },
+        Rectangle {
+            width: 7,
+            height: 12,
+        },
+    ];
+    list.sort_by_key(|r| {
+        num_sort_operations += 1;
+        r.height
+    });
+    print!("{list:#?}");
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
 }

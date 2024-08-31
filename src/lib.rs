@@ -2,8 +2,20 @@ use std::env;
 
 use std::error::Error;
 use std::fs;
-use std::os::windows::io::AsRawHandle;
 
+/// Adds one to the number given.
+///
+/// # Examples
+///
+/// ```
+/// let arg = 5;
+/// let answer = my_crate::add_one(arg);
+///
+/// assert_eq!(6, answer);
+/// ```
+pub fn add_one(x: i32) -> i32 {
+    x + 1
+}
 pub struct Config {
     pub query: String,
     pub file_path: String,
@@ -11,6 +23,7 @@ pub struct Config {
 }
 
 impl Config {
+
     pub fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
         args.next();
 

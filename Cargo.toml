@@ -2,5 +2,7 @@
 name = "naveengrep"
 version = "0.1.0"
 edition = "2021"
+description = "naveengrep is a command line tool similar to the grep"
+license = "MIT"
 
 [dependencies]

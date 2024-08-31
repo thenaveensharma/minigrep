@@ -95,6 +95,9 @@ fn main() {
         r.height
     });
     print!("{list:#?}");
+    let v1 = vec![1, 2, 3, 4];
+    let v2: Vec<_> = v1.iter().map(|n| n + 1).filter(|n| n > &2).collect();
+    assert_eq!(v2, vec![3, 4, 5]);
 }
 
 #[derive(Debug)]

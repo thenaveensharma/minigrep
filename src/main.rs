@@ -22,5 +22,6 @@ enum List {
     Nil,
 }
 fn main() {
+    // Box is a smart pointer which implements Deref and Drop trait which help to reference the value and in clean up resp.
     let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 }

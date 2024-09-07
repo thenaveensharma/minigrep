@@ -32,7 +32,7 @@
 //     fn deref(&self) -> &Self::Target {
 //         &self.0
 //     }
-    
+
 // }
 // impl <T> MyBox<T> {
 //     fn new(x: T) -> MyBox<T> {
@@ -49,24 +49,22 @@
 //     hello(&m);
 // }
 
-struct CustomerSmartPointer{
-    data:String,
+struct CustomerSmartPointer {
+    data: String,
 }
 impl Drop for CustomerSmartPointer {
     fn drop(&mut self) {
-        println!("Droppinf CustomerSmartPointer with data `{}`",self.data);
+        println!("Droppinf CustomerSmartPointer with data `{}`", self.data);
     }
-    
 }
 
-fn main(){
-    let c=CustomerSmartPointer{
-        data:String::from("My Stuff")
-        
+fn main() {
+    let c = CustomerSmartPointer {
+        data: String::from("My Stuff"),
     };
-    let d=CustomerSmartPointer{
-        data:String::from("Other Stuff")
-
+    let d = CustomerSmartPointer {
+        data: String::from("Other Stuff"),
     };
+    drop(c);
     println!("CustomerSmartPointers created");
 }

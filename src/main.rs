@@ -49,22 +49,35 @@
 //     hello(&m);
 // }
 
-struct CustomerSmartPointer {
-    data: String,
-}
-impl Drop for CustomerSmartPointer {
-    fn drop(&mut self) {
-        println!("Droppinf CustomerSmartPointer with data `{}`", self.data);
-    }
-}
+// struct CustomerSmartPointer {
+//     data: String,
+// }
+// impl Drop for CustomerSmartPointer {
+//     fn drop(&mut self) {
+//         println!("Droppinf CustomerSmartPointer with data `{}`", self.data);
+//     }
+// }
 
+// fn main() {
+//     let c = CustomerSmartPointer {
+//         data: String::from("My Stuff"),
+//     };
+//     let d = CustomerSmartPointer {
+//         data: String::from("Other Stuff"),
+//     };
+//     drop(c);
+//     println!("CustomerSmartPointers created");
+// }
+
+enum List {
+    Cons(i32,Rc<List>),
+    Nil
+}
+use std::rc::Rc;
+
+use crate::List::{Cons,Nil};
 fn main() {
-    let c = CustomerSmartPointer {
-        data: String::from("My Stuff"),
-    };
-    let d = CustomerSmartPointer {
-        data: String::from("Other Stuff"),
-    };
-    drop(c);
-    println!("CustomerSmartPointers created");
+    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    let b = Cons(3, Rc::clone(&a));
+    let c = Cons(4, Rc::clone(&a));
 }

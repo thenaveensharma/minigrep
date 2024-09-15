@@ -113,7 +113,7 @@
 //     }
 // }
 
-use std::{future::Pending,};
+use std::future::Pending;
 
 pub trait Messenger {
     fn send(&self, msg: &str);

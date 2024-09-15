@@ -291,13 +291,33 @@
 //     self.average=total as f64 /self.list.len() as f64;
 // }
 // }
-use naveengrep::Post;
+// use naveengrep::Post;
+// fn main() {
+//     let mut post = Post::new();
+//     post.add_text("I ate a salad for lunch today");
+//     assert_eq!("", post.content());
+//     // post.request_review();
+//     // assert_eq!("", post.content());
+//     // post.approve();
+//     // assert_eq!("I ate a salad for lunch today", post.content());
+// }
+
 fn main() {
-    let mut post = Post::new();
-    post.add_text("I ate a salad for lunch today");
-    assert_eq!("", post.content());
-    // post.request_review();
-    // assert_eq!("", post.content());
-    // post.approve();
-    // assert_eq!("I ate a salad for lunch today", post.content());
+    let favourite_color: Option<&str> = None;
+    let is_tuesday = false;
+    let age: Result<u8, _> = "34".parse();
+
+    if let Some(color) = favourite_color {
+        println!("Using your favorite color, {color}, as the background");
+    } else if is_tuesday {
+        println!("Tuesday is green day!");
+    } else if let Ok(age) = age {
+        if age > 30 {
+            println!("Using purple as the background color");
+        } else {
+            println!("Using orange as the background color");
+        }
+    } else {
+        println!("Using blue as the background color");
+    }
 }

@@ -199,43 +199,105 @@
 //     let received=rx.recv().unwrap();
 //     println!("Got: {received}");
 // }
-use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
+// use std::sync::mpsc;
+// use std::thread;
+// use std::time::Duration;
 
+// fn main() {
+//     let (tx, rx) = mpsc::channel();
+
+//     let tx1 = tx.clone();
+//     thread::spawn(move || {
+//         let vals = vec![
+//             String::from("hi"),
+//             String::from("from"),
+//             String::from("the"),
+//             String::from("thread"),
+//         ];
+
+//         for val in vals {
+//             tx1.send(val).unwrap();
+//             thread::sleep(Duration::from_secs(1));
+//         }
+//     });
+
+//     thread::spawn(move || {
+//         let vals = vec![
+//             String::from("more"),
+//             String::from("messages"),
+//             String::from("for"),
+//             String::from("you"),
+//         ];
+
+//         for val in vals {
+//             tx.send(val).unwrap();
+//             thread::sleep(Duration::from_secs(1));
+//         }
+//     });
+
+//     for received in rx {
+//         println!("Got: {received}");
+//     }
+// }
+
+// use std::sync::{Arc, Mutex};
+// use std::{result, thread};
+
+// fn main() {
+//     let counter = Arc::new( Mutex::new(0));
+//     let mut handles = vec![];
+
+//     for _ in 0..10 {
+//         let counter=Arc::clone(&counter);
+//         let handle = thread::spawn(move || {
+//             let mut num = counter.lock().unwrap();
+
+//             *num += 1;
+//         });
+//         handles.push(handle);
+//     }
+
+//     for handle in handles {
+//         handle.join().unwrap();
+//     }
+
+//     println!("Result: {}", *counter.lock().unwrap());
+// }
+
+// pub struct AverageCollection{
+//     list:Vec<i32>,
+//     average:f64
+// }
+// impl AverageCollection {
+//     pub fn add (&mut self,value:i32){
+//         self.list.push(value);
+//         self.update_average();
+//     }
+// pub fn remove(&mut self)->Option<i32> {
+//     let result=self.list.pop();
+//     match result {
+//         Some(value)=>{
+//             self.update_average();
+//             Some(value)
+//         }
+//         None=>None,
+//     }
+// }
+// pub fn average(&self)->f64{
+//     self.average
+// }
+// pub fn update_average(&mut self) {
+//     let total:i32=self.list.iter().sum();
+//     self.average=total as f64 /self.list.len() as f64;
+// }
+// }
+use naveengrep::Post;
 fn main() {
-    let (tx, rx) = mpsc::channel();
-
-    let tx1 = tx.clone();
-    thread::spawn(move || {
-        let vals = vec![
-            String::from("hi"),
-            String::from("from"),
-            String::from("the"),
-            String::from("thread"),
-        ];
-
-        for val in vals {
-            tx1.send(val).unwrap();
-            thread::sleep(Duration::from_secs(1));
-        }
-    });
-
-    thread::spawn(move || {
-        let vals = vec![
-            String::from("more"),
-            String::from("messages"),
-            String::from("for"),
-            String::from("you"),
-        ];
-
-        for val in vals {
-            tx.send(val).unwrap();
-            thread::sleep(Duration::from_secs(1));
-        }
-    });
-
-    for received in rx {
-        println!("Got: {received}");
-    }
+    let mut post = Post::new();
+    post.add_text("I ate a salad for lunch today");
+    assert_eq!("", post.content());
+    // post.request_review();
+    // assert_eq!("", post.content());
+    // post.approve();
+    // assert_eq!("I ate a salad for lunch today", post.content());
 }

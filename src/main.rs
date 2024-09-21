@@ -303,21 +303,55 @@
 // }
 
 fn main() {
-    let favourite_color: Option<&str> = None;
-    let is_tuesday = false;
-    let age: Result<u8, _> = "34".parse();
+    // let favourite_color: Option<&str> = None;
+    // let is_tuesday = false;
+    // let age: Result<u8, _> = "34".parse();
 
-    if let Some(color) = favourite_color {
-        println!("Using your favorite color, {color}, as the background");
-    } else if is_tuesday {
-        println!("Tuesday is green day!");
-    } else if let Ok(age) = age {
-        if age > 30 {
-            println!("Using purple as the background color");
-        } else {
-            println!("Using orange as the background color");
-        }
-    } else {
-        println!("Using blue as the background color");
+    // if let Some(color) = favourite_color {
+    //     println!("Using your favorite color, {color}, as the background");
+    // } else if is_tuesday {
+    //     println!("Tuesday is green day!");
+    // } else if let Ok(age) = age {
+    //     if age > 30 {
+    //         println!("Using purple as the background color");
+    //     } else {
+    //         println!("Using orange as the background color");
+    //     }
+    // } else {
+    //     println!("Using blue as the background color");
+    // }
+    // let x = 1;
+    // match x {
+    //     1..=5 => println!("{x}"),
+    //     _ => println!("Everything"),
+    // }
+    // let x = Some(5);
+    // let y = 10;
+
+    // match x {
+    //     Some(50) => println!("Got 50"),
+    //     Some(y) => println!("Matched, y = {y}"),
+    //     _ => println!("Default case, x = {x:?}"),
+    // }
+
+    // println!("at the end: x = {x:?}, y = {y}");
+
+    // let x=1;
+    // match x {
+    //     1|2 =>println!("one or two"),
+    //     _=> println!("other")
+    // }
+    enum Message {
+        Hello { id: i32 },
+    }
+    let msg = Message::Hello { id: 5 };
+    match msg {
+        Message::Hello {
+            id: id_variable @ 3..=7,
+        } => println!(
+            "
+        Found an id in range: {id_variable}"
+        ),
+        Message::Hello { id } => print!("Found some other id: {id}"),
     }
 }
